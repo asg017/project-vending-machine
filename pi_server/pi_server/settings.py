@@ -30,6 +30,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 security_key = os.getenv('DJANGO_SECURITY_KEY')
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = (
+    'observablehq.com',
+)
 
 # We don't completely kill the server, in order to make this more friendly as a whole
 if not security_key:
@@ -48,7 +52,9 @@ else:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'eminus.serveo.net'
+]
 
 
 # Application definition

@@ -16,8 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from pi_server.views.hello import hello
+from pi_server.views.light import light
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('hello/', hello),
+    path('light/', light)
 ]

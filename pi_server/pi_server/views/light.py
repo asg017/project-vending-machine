@@ -3,8 +3,8 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 from gpiozero import LED
 
-SECRET = ''
-LIGHT_PIN = -1
+SECRET = 'SECRET SECRET'
+LIGHT_PIN = 17
 
 @csrf_exempt
 def light(request):
@@ -14,9 +14,10 @@ def light(request):
 
     data = json.loads(request.body.decode('utf-8'))
 
-    # TODO
-    # 1. Check if the secret inside of "data" matches the SECRET above!
-    #       If no, return a HttpResponseForbidden
-    # 2. Blink the LED!
+    if data.get('secret') != SECRET:
+        return HttpResponseForbidden('Secrets dont match!')
 
-    return HttpResponse('Change this message!')
+    led = LED(LIGHT_PIN)
+    led.blink()
+
+    return HttpResponse('Blinked the LED!')
